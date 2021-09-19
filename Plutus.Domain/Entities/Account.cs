@@ -2,7 +2,7 @@
 
 namespace Plutus.Domain.Entities
 {
-    public class Account : BaseAuditableEntity
+    public class Account : AuditableEntity
     {
         
     }

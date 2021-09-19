@@ -2,7 +2,7 @@
 
 namespace Plutus.Domain.Common
 {
-    public abstract class BaseAuditableEntity
+    public abstract class AuditableEntity
     {
         public DateTime Created { get; set; }
         public string CreatedBy { get; set; } = null!;

@@ -23,7 +23,6 @@ namespace Plutus.Infrastructure.Persistence
         }
 
         public DbSet<Account> Accounts { get; set; } = null!;
-        public DbSet<Transaction> Transactions { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -34,7 +33,7 @@ namespace Plutus.Infrastructure.Persistence
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
         {
-            foreach (var entry in ChangeTracker.Entries<BaseAuditableEntity>())
+            foreach (var entry in ChangeTracker.Entries<AuditableEntity>())
                 switch (entry.State)
                 {
                     case EntityState.Added:
