@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Linq;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -33,20 +34,15 @@ namespace Plutus.Infrastructure.Persistence
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
         {
-            foreach (var entry in ChangeTracker.Entries<AuditableEntity>())
-                switch (entry.State)
-                {
-                    case EntityState.Added:
-                        entry.Entity.CreatedBy = _currentUserService.UserId;
-                        entry.Entity.Created = _dateTime.Now;
-                        break;
-
-                    case EntityState.Modified:
-                        entry.Entity.LastModifiedBy = _currentUserService.UserId;
-                        entry.Entity.LastModified = _dateTime.Now;
-                        break;
-                }
-
+            foreach (var entry in ChangeTracker.Entries<AuditableEntity>()
+                .Where(e => e.State is EntityState.Added or EntityState.Modified))
+            {
+                entry.Entity.SetAuditValues(
+                    entry.State == EntityState.Added, 
+                    _dateTime.Now,
+                    _currentUserService.UserId);
+            }
+            
             return await base.SaveChangesAsync(cancellationToken);
         }
     }

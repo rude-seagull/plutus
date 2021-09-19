@@ -13,10 +13,11 @@ namespace Plutus.Infrastructure
             this IServiceCollection services,
             IConfiguration configuration)
         {
-            services.AddDbContext<PlutusDbContext>(options =>
-                options.UseSqlServer(
+            services.AddDbContext<PlutusDbContext>(dbContextOptionsBuilder =>
+                dbContextOptionsBuilder.UseSqlServer(
                     configuration.GetConnectionString("DefaultConnection"),
-                    b => b.MigrationsAssembly(typeof(PlutusDbContext).Assembly.FullName)));
+                    sqlServerDbContextOptionsBuilder => 
+                        sqlServerDbContextOptionsBuilder.MigrationsAssembly(typeof(PlutusDbContext).Assembly.FullName)));
 
             services.AddTransient<IDateTime, DateTimeService>();
             services.AddTransient<ICurrentUserService, FakeCurrentUserService>();
