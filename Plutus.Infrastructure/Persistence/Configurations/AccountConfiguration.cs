@@ -8,9 +8,6 @@ namespace Plutus.Infrastructure.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<Account> builder)
         {
-            builder.HasMany(a => a.Transactions)
-                .WithOne()
-                .HasForeignKey(a => a.AccountId);
         }
     }
 }
