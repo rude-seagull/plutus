@@ -1,16 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using Plutus.Domain.Enums;
+using Plutus.Domain.Common;
 
 namespace Plutus.Domain.Entities
 {
-    public class Transaction
+    public class Transaction : BaseAuditableEntity
     {
-        public Guid Id { get; set; }
-        public decimal Amount { get; set; }
-        public string Comment { get; set; }
-        public TransactionType Type { get; set; }
-        public Guid AccountId { get; set; }
-        public ICollection<Tag> Tags { get; set; }
+        public decimal Amount { get; private set; }
+        public string Comment { get; private set; }
+        public Guid AccountId { get; private set; }
+
+        public Transaction(decimal amount, string comment, Guid accountId)
+        {
+            Amount = amount;
+            Comment = comment;
+            AccountId = accountId;
+        }
     }
 }
