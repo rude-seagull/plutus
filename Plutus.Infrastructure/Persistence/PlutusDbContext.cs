@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
@@ -37,7 +38,7 @@ namespace Plutus.Infrastructure.Persistence
             foreach (var entry in ChangeTracker.Entries<AuditableEntity>()
                 .Where(e => e.State is EntityState.Added or EntityState.Modified))
             {
-                entry.Entity.SetAuditValues(
+                entry.Entity.LogAuditValues(
                     entry.State == EntityState.Added, 
                     _dateTime.Now,
                     _currentUserService.UserId);

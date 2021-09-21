@@ -9,9 +9,9 @@ namespace Plutus.Domain.Common
         public DateTime LastModified { get; private set; }
         public string LastModifiedBy { get; private set; } = null!;
 
-        public void SetAuditValues(bool added, DateTime timeNow, string userId)
+        public void LogAuditValues(bool created, DateTime timeNow, string userId)
         {
-            if (added)
+            if (created)
             {
                 Created = timeNow;
                 CreatedBy = userId;

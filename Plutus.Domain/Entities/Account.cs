@@ -4,6 +4,6 @@ namespace Plutus.Domain.Entities
 {
     public class Account : AuditableEntity
     {
-        
+
     }
 }
