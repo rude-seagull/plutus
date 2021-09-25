@@ -1,5 +1,10 @@
 ### DbContext Configuration
 
+**How do I run EF Core migration command ?**
+
+From your terminal, you must be in the directory of Plutus ASP.NET Core project (Plutus.Api).
+Then run the following command : ` dotnet ef migrations add InitialCreate --output-dir ..\Plutus.Infrastructure\Migrations`
+
 **Why are the DbSet suffixed with `=null!` ?**
 
 Since this solution is using nullable reference type, the common practice of having uninitialized DbSet properties on context types is problematic, as the compiler will now emit warnings for them.

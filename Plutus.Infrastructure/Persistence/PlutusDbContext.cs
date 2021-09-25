@@ -17,8 +17,9 @@ namespace Plutus.Infrastructure.Persistence
         private readonly IDateTime _dateTime;
 
         public PlutusDbContext(
+            DbContextOptions<PlutusDbContext> options,
             ICurrentUserService currentUserService,
-            IDateTime dateTime)
+            IDateTime dateTime) : base(options)
         {
             _currentUserService = currentUserService;
             _dateTime = dateTime;
