@@ -3,7 +3,11 @@
 **How do I run EF Core migration command ?**
 
 From your terminal, you must be in the directory of Plutus ASP.NET Core project (Plutus.Api).
-Then run the following command : ` dotnet ef migrations add InitialCreate --output-dir ..\Plutus.Infrastructure\Migrations`
+Then run the following command : ` dotnet ef migrations add <MigrationName> --output-dir ..\Plutus.Infrastructure\Migrations`
+
+**Why is the model snapshot file located in the API assembly ?**
+
+I do not know and I have not been able to found an answer. However it seem safe to manually move this file to the infrastructure layer after each new migration.
 
 **Why are the DbSet suffixed with `=null!` ?**
 
