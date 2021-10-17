@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plutus.Application", "Plutu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plutus.Api", "Plutus.Api\Plutus.Api.csproj", "{2EDC72E1-D9AC-46DB-859B-B207CA72F44B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plutus.Database", "Plutus.Database\Plutus.Database.csproj", "{6899BC81-444F-4AE1-A8A7-AD73A2E559E7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,6 +24,7 @@ Global
 		{E431CA90-D46F-4F21-B711-597F639B2D9B} = {58A1F2E9-0F28-4624-AA23-0617BF9C7E49}
 		{1CADF1AD-55E9-4A43-AC21-3A0287E7C34D} = {58A1F2E9-0F28-4624-AA23-0617BF9C7E49}
 		{2EDC72E1-D9AC-46DB-859B-B207CA72F44B} = {58A1F2E9-0F28-4624-AA23-0617BF9C7E49}
+		{6899BC81-444F-4AE1-A8A7-AD73A2E559E7} = {58A1F2E9-0F28-4624-AA23-0617BF9C7E49}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{67DD1A73-57E9-4532-9F28-5701A6A43966}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -40,5 +43,9 @@ Global
 		{2EDC72E1-D9AC-46DB-859B-B207CA72F44B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2EDC72E1-D9AC-46DB-859B-B207CA72F44B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2EDC72E1-D9AC-46DB-859B-B207CA72F44B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6899BC81-444F-4AE1-A8A7-AD73A2E559E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6899BC81-444F-4AE1-A8A7-AD73A2E559E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6899BC81-444F-4AE1-A8A7-AD73A2E559E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6899BC81-444F-4AE1-A8A7-AD73A2E559E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
