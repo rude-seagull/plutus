@@ -16,8 +16,7 @@ namespace Plutus.Infrastructure
             services.AddDbContext<PlutusDbContext>(dbContextOptionsBuilder =>
                 dbContextOptionsBuilder.UseSqlServer(
                     configuration.GetConnectionString("DefaultConnection"),
-                    sqlServerDbContextOptionsBuilder => 
-                        sqlServerDbContextOptionsBuilder.MigrationsAssembly("Plutus.Api")));
+                    b => b.MigrationsAssembly(typeof(PlutusDbContext).Assembly.FullName)));
 
             services.AddTransient<IDateTime, DateTimeService>();
             services.AddTransient<ICurrentUserService, FakeCurrentUserService>();
