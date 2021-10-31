@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Plutus.Application.Common.Interfaces;
 using Plutus.Domain.Entities;
 
-namespace Plutus.Application.AccountHandlers.Queries
+namespace Plutus.Application.Accounts.Queries.GetAccount
 {
     public record GetAccountQuery(Guid AccountId) : IRequest<Account?>;
 

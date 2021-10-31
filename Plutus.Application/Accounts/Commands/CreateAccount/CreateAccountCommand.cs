@@ -5,7 +5,7 @@ using MediatR;
 using Plutus.Application.Common.Interfaces;
 using Plutus.Domain.Entities;
 
-namespace Plutus.Application.AccountHandlers.Commands
+namespace Plutus.Application.Accounts.Commands.CreateAccount
 {
     public record CreateAccountCommand(string Title, string Description, decimal Balance) : IRequest<Guid>;
 

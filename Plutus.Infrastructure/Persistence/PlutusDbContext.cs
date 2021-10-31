@@ -3,6 +3,7 @@ using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Plutus.Application.Common.Interfaces;
 using Plutus.Domain.Common;
 using Plutus.Domain.Entities;
@@ -31,6 +32,15 @@ namespace Plutus.Infrastructure.Persistence
             modelBuilder.AddDateTimeUtcConverter();
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             base.OnModelCreating(modelBuilder);
+        }
+        
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.ConfigureWarnings(w =>
+                w.Throw(RelationalEventId.MultipleCollectionIncludeWarning));
+        
+            optionsBuilder.EnableDetailedErrors();
+            optionsBuilder.EnableSensitiveDataLogging();
         }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())

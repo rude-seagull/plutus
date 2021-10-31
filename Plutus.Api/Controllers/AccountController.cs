@@ -2,8 +2,8 @@
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Plutus.Application.AccountHandlers.Commands;
-using Plutus.Application.AccountHandlers.Queries;
+using Plutus.Application.Accounts.Commands.CreateAccount;
+using Plutus.Application.Accounts.Queries.GetAccount;
 
 namespace Plutus.Api.Controllers
 {

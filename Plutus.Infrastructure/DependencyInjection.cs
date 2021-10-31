@@ -16,7 +16,11 @@ namespace Plutus.Infrastructure
             services.AddDbContext<PlutusDbContext>(dbContextOptionsBuilder =>
                 dbContextOptionsBuilder.UseSqlServer(
                     configuration.GetConnectionString("DefaultConnection"),
-                    b => b.MigrationsAssembly(typeof(PlutusDbContext).Assembly.FullName)));
+                    optionsBuilder =>
+                    {
+                        optionsBuilder.MigrationsAssembly(typeof(PlutusDbContext).Assembly.FullName);
+                        optionsBuilder.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
+                    }));
 
             services.AddScoped<IPlutusDbContext>(provider => provider.GetService<PlutusDbContext>()!);
             services.AddTransient<IDateTime, DateTimeService>();
