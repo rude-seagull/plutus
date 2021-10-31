@@ -7,12 +7,7 @@ using Plutus.Domain.Entities;
 
 namespace Plutus.Application.AccountHandlers.Commands
 {
-    public class CreateAccountCommand : IRequest<Guid>
-    {
-        public string Title { get; set; } = null!;
-        public string Description { get; set; } = null!;
-        public decimal Balance { get; set; }
-    }
+    public record CreateAccountCommand(string Title, string Description, decimal Balance) : IRequest<Guid>;
 
     public class CreateAccountCommandHandler : IRequestHandler<CreateAccountCommand, Guid>
     {
@@ -25,11 +20,13 @@ namespace Plutus.Application.AccountHandlers.Commands
 
         public async Task<Guid> Handle(CreateAccountCommand request, CancellationToken cancellationToken)
         {
+            var (title, description, balance) = request;
+            
             var newAccount = Account.CreateInstance(
-                request.Title,
-                request.Description,
-                request.Balance);
-
+                title,
+                description,
+                balance);
+            
             _context.Accounts.Add(newAccount);
             await _context.SaveChangesAsync(cancellationToken);
             return newAccount.Id;
