@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Plutus.Application.Accounts;
 using Plutus.Application.Accounts.Commands.CreateAccount;
 using Plutus.Application.Accounts.Queries.GetAccount;
 
@@ -21,14 +23,15 @@ namespace Plutus.Api.Controllers
         }
         
         [HttpGet("{accountId:guid}", Name = "GetAccount")]
-        public async Task<ActionResult> GetAccountAsync([FromRoute] Guid accountId)
+        [ProducesResponseType(statusCode: StatusCodes.Status200OK, type: typeof(AccountResponse))]
+        public async Task<ActionResult<AccountResponse>> GetAccountAsync([FromRoute] Guid accountId)
         {
             var account = await _mediator.Send(new GetAccountQuery(accountId));
             return account is null ? NotFound() : Ok(account);
         }
         
         [HttpPost("", Name = "CreateAccount")]
-        public async Task<ActionResult> CreateAccountAsync([FromBody] CreateAccountCommand command)
+        public async Task<ActionResult<AccountResponse>> CreateAccountAsync([FromBody] CreateAccountCommand command)
         {
             var accountId = await _mediator.Send(command);
             return Ok(accountId);
