@@ -12,10 +12,6 @@
     </ItemGroup>
     
     <ItemGroup>
-      <Folder Include="AccountHandlers\Queries" />
-    </ItemGroup>
-    
-    <ItemGroup>
       <ProjectReference Include="..\Plutus.Domain\Plutus.Domain.csproj" />
     </ItemGroup>
 

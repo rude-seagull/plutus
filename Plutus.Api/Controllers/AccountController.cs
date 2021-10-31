@@ -1,7 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Plutus.Application.AccountHandlers.Commands;
+using Plutus.Application.AccountHandlers.Queries;
 
 namespace Plutus.Api.Controllers
 {
@@ -16,6 +18,13 @@ namespace Plutus.Api.Controllers
         public AccountController(IMediator mediator)
         {
             _mediator = mediator;
+        }
+        
+        [HttpGet("{accountId:guid}", Name = "GetAccount")]
+        public async Task<ActionResult> GetAccountAsync([FromRoute] Guid accountId)
+        {
+            var account = await _mediator.Send(new GetAccountQuery(accountId));
+            return account is null ? NotFound() : Ok(account);
         }
         
         [HttpPost("", Name = "CreateAccount")]
