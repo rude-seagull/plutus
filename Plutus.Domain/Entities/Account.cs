@@ -14,7 +14,7 @@ namespace Plutus.Domain.Entities
         {
             return new Account
             {
-                Id = default,
+                Id = Guid.NewGuid(),
                 Title = title,
                 Description = description,
                 Balance = initialBalance

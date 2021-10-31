@@ -18,6 +18,7 @@ namespace Plutus.Infrastructure
                     configuration.GetConnectionString("DefaultConnection"),
                     b => b.MigrationsAssembly(typeof(PlutusDbContext).Assembly.FullName)));
 
+            services.AddScoped<IPlutusDbContext>(provider => provider.GetService<PlutusDbContext>()!);
             services.AddTransient<IDateTime, DateTimeService>();
             services.AddTransient<ICurrentUserService, FakeCurrentUserService>();
 

@@ -10,7 +10,7 @@ using Plutus.Infrastructure.Persistence.Extensions;
 
 namespace Plutus.Infrastructure.Persistence
 {
-    public class PlutusDbContext : DbContext
+    public class PlutusDbContext : DbContext, IPlutusDbContext
     {
         private readonly ICurrentUserService _currentUserService;
         private readonly IDateTime _dateTime;
