@@ -17,16 +17,13 @@ namespace Plutus.Infrastructure.Identity
     public class IdentityService : IIdentityService
     {
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly TokenSecurityOptions _tokenOptions;
 
         public IdentityService(
             UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager,
             IOptions<TokenSecurityOptions> tokenOptions)
         {
             _userManager = userManager;
-            _signInManager = signInManager;
             _tokenOptions = tokenOptions.Value;
         }
         
