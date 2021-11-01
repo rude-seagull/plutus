@@ -33,6 +33,8 @@ namespace Plutus.Infrastructure
             
             services.AddTransient<IDateTime, DateTimeService>();
             services.AddTransient<ICurrentUserService, FakeCurrentUserService>();
+            
+            services.Configure<TokenSecurityOptions>(configuration.GetSection(TokenSecurityOptions.TokenSecurity));
 
             return services;
         }

@@ -12,8 +12,8 @@ namespace Plutus.Infrastructure.Persistence
             UserManager<ApplicationUser> userManager, 
             RoleManager<IdentityRole> roleManager)
         {
-            await roleManager.CreateAsync(new IdentityRole(IdentityConstants.Roles.Root));
-            await roleManager.CreateAsync(new IdentityRole(IdentityConstants.Roles.User));
+            await roleManager.CreateAsync(new IdentityRole(ApplicationIdentityConstants.Roles.Root));
+            await roleManager.CreateAsync(new IdentityRole(ApplicationIdentityConstants.Roles.User));
             
             var users = new List<ApplicationUser>
             { 
@@ -33,9 +33,9 @@ namespace Plutus.Infrastructure.Persistence
 
             foreach (var user in users)
             {
-                await userManager.CreateAsync(user, IdentityConstants.DefaultPassword);
+                await userManager.CreateAsync(user, ApplicationIdentityConstants.DefaultPassword);
                 var createdUser = await userManager.FindByEmailAsync(user.Email);
-                await userManager.AddToRoleAsync(createdUser, IdentityConstants.Roles.Root);
+                await userManager.AddToRoleAsync(createdUser, ApplicationIdentityConstants.Roles.Root);
             }
         }
     }

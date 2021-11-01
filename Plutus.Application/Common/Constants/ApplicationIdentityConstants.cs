@@ -1,6 +1,6 @@
 ﻿namespace Plutus.Application.Common.Constants
 {
-    public static class IdentityConstants
+    public static class ApplicationIdentityConstants
     {
         public static class Roles
         {
