@@ -4,6 +4,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Plutus.Application;
 using Plutus.Infrastructure;
+using Plutus.Infrastructure.Persistence.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,8 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
+    app.EnsureDatabaseCreated();
+    app.SeedIdentityDataAsync();
     app.UseSwagger();
     app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Plutus.Api v1"));
 }

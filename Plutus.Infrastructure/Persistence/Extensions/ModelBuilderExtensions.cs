@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Plutus.Infrastructure.Persistence.Extensions
 {
-    internal static class ModelBuilderExtension
+    internal static class ModelBuilderExtensions
     {
         internal static void AddDateTimeUtcConverter(this ModelBuilder modelBuilder)
         {
