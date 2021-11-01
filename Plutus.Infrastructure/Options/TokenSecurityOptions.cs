@@ -1,4 +1,4 @@
-﻿namespace Plutus.Infrastructure.Identity
+﻿namespace Plutus.Infrastructure.Options
 {
     public class TokenSecurityOptions
     {

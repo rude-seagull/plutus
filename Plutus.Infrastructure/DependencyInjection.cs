@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Plutus.Application.Common.Interfaces;
 using Plutus.Infrastructure.Identity;
+using Plutus.Infrastructure.Options;
 using Plutus.Infrastructure.Persistence;
 using Plutus.Infrastructure.Services;
 

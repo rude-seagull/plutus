@@ -11,8 +11,10 @@ using Microsoft.IdentityModel.Tokens;
 using Plutus.Application.Common.Interfaces;
 using Plutus.Application.Exceptions;
 using Plutus.Application.Users;
+using Plutus.Infrastructure.Identity;
+using Plutus.Infrastructure.Options;
 
-namespace Plutus.Infrastructure.Identity
+namespace Plutus.Infrastructure.Services
 {
     public class IdentityService : IIdentityService
     {

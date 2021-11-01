@@ -15,9 +15,5 @@
     <ItemGroup>
       <ProjectReference Include="..\Plutus.Domain\Plutus.Domain.csproj" />
     </ItemGroup>
-    
-    <ItemGroup>
-      <Folder Include="Users\Commands" />
-    </ItemGroup>
 
 </Project>
