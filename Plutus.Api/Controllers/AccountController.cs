@@ -31,6 +31,7 @@ namespace Plutus.Api.Controllers
         }
         
         [HttpPost("", Name = "CreateAccount")]
+        [ProducesResponseType(statusCode: StatusCodes.Status200OK, type: typeof(AccountResponse))]
         public async Task<ActionResult<AccountResponse>> CreateAccountAsync([FromBody] CreateAccountCommand command)
         {
             var accountId = await _mediator.Send(command);

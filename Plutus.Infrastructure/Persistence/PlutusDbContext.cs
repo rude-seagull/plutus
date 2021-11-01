@@ -2,16 +2,18 @@
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Plutus.Application.Common.Interfaces;
 using Plutus.Domain.Common;
 using Plutus.Domain.Entities;
+using Plutus.Infrastructure.Identity;
 using Plutus.Infrastructure.Persistence.Extensions;
 
 namespace Plutus.Infrastructure.Persistence
 {
-    public class PlutusDbContext : DbContext, IPlutusDbContext
+    public class PlutusDbContext : IdentityDbContext<ApplicationUser>, IPlutusDbContext
     {
         private readonly ICurrentUserService _currentUserService;
         private readonly IDateTime _dateTime;
