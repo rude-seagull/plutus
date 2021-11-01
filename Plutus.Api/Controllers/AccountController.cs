@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Plutus.Application.Accounts;
@@ -9,6 +10,7 @@ using Plutus.Application.Accounts.Queries.GetAccount;
 
 namespace Plutus.Api.Controllers
 {
+    [Authorize]
     [ApiController]
     [Produces("application/json")]
     [Consumes("application/json")]
