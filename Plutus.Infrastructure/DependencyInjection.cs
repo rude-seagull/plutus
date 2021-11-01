@@ -15,6 +15,8 @@ namespace Plutus.Infrastructure
             this IServiceCollection services,
             IConfiguration configuration)
         {
+            services.Configure<TokenSecurityOptions>(configuration.GetSection(TokenSecurityOptions.TokenSecurity));
+            
             services.AddDbContext<PlutusDbContext>(dbContextOptionsBuilder =>
                 dbContextOptionsBuilder.UseSqlServer(
                     configuration.GetConnectionString("DefaultConnection"),
@@ -31,11 +33,10 @@ namespace Plutus.Infrastructure
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<PlutusDbContext>();
             
+            services.AddTransient<IIdentityService, IdentityService>();
             services.AddTransient<IDateTime, DateTimeService>();
             services.AddTransient<ICurrentUserService, FakeCurrentUserService>();
             
-            services.Configure<TokenSecurityOptions>(configuration.GetSection(TokenSecurityOptions.TokenSecurity));
-
             return services;
         }
     }

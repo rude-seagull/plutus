@@ -4,6 +4,5 @@ namespace Plutus.Infrastructure.Identity
 {
     public class ApplicationUser : IdentityUser
     {
-        
     }
 }
