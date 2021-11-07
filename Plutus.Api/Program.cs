@@ -11,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.ConfigureAuthentication(builder.Configuration);
+builder.Services.ConfigureServices();
 builder.Services.ConfigureSwagger();
 builder.Services.AddControllers();
 

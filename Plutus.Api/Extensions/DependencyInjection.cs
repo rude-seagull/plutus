@@ -6,11 +6,20 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Plutus.Api.Services;
+using Plutus.Application.Common.Interfaces;
 
 namespace Plutus.Api.Extensions
 {
     public static class DependencyInjection
     {
+        public static IServiceCollection ConfigureServices(this IServiceCollection services)
+        {
+            services.AddHttpContextAccessor();
+            services.AddSingleton<ICurrentUserService, CurrentUserService>();
+            return services;
+        }
+        
         public static IServiceCollection ConfigureAuthentication(
             this IServiceCollection services,
             IConfiguration configuration)

@@ -36,8 +36,7 @@ namespace Plutus.Infrastructure
             
             services.AddTransient<IIdentityService, IdentityService>();
             services.AddTransient<IDateTime, DateTimeService>();
-            services.AddTransient<ICurrentUserService, FakeCurrentUserService>();
-            
+
             return services;
         }
     }
