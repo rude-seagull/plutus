@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Plutus.Application.Accounts;
 using Plutus.Application.Accounts.Commands.CreateAccount;
 using Plutus.Application.Accounts.Queries.GetAccount;
+using Plutus.Application.Accounts.Queries.GetAccounts;
 
 namespace Plutus.Api.Controllers
 {
@@ -32,9 +34,17 @@ namespace Plutus.Api.Controllers
             return account is null ? NotFound() : Ok(account);
         }
         
-        [HttpPost("", Name = "CreateAccount")]
+        [HttpGet("", Name = "GetAccounts")]
         [ProducesResponseType(statusCode: StatusCodes.Status200OK, type: typeof(AccountResponse))]
-        public async Task<ActionResult<AccountResponse>> CreateAccountAsync([FromBody] CreateAccountCommand command)
+        public async Task<ActionResult<AccountResponse>> GetAccountsAsync()
+        {
+            var accounts = await _mediator.Send(new GetAccountsQuery());
+            return Ok(accounts);
+        }
+        
+        [HttpPost("", Name = "CreateAccount")]
+        [ProducesResponseType(statusCode: StatusCodes.Status200OK, type: typeof(List<AccountResponse>))]
+        public async Task<ActionResult<List<AccountResponse>>> CreateAccountAsync([FromBody] CreateAccountCommand command)
         {
             var accountId = await _mediator.Send(command);
             return Ok(accountId);

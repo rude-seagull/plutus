@@ -1,5 +1,6 @@
 ﻿using System;
 using Plutus.Domain.Common;
+#pragma warning disable 8618
 
 namespace Plutus.Domain.Entities
 {
