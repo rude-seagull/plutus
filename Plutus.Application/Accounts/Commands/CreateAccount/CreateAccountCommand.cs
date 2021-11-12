@@ -13,11 +13,16 @@ namespace Plutus.Application.Accounts.Commands.CreateAccount
     {
         private readonly IPlutusDbContext _context;
         private readonly IMapper _mapper;
+        private readonly ICurrentUserService _currentUserService;
 
-        public CreateAccountCommandHandler(IPlutusDbContext context, IMapper mapper)
+        public CreateAccountCommandHandler(
+            IPlutusDbContext context, 
+            IMapper mapper, 
+            ICurrentUserService currentUserService)
         {
             _context = context;
             _mapper = mapper;
+            _currentUserService = currentUserService;
         }
 
         public async Task<AccountResponse> Handle(CreateAccountCommand request, CancellationToken cancellationToken)
@@ -27,7 +32,8 @@ namespace Plutus.Application.Accounts.Commands.CreateAccount
             var newAccount = Account.CreateInstance(
                 title,
                 description,
-                balance);
+                balance,
+                _currentUserService.UserId);
             
             _context.Accounts.Add(newAccount);
             await _context.SaveChangesAsync(cancellationToken);

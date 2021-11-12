@@ -10,20 +10,23 @@ namespace Plutus.Domain.Entities
         public static Account CreateInstance(
             string title, 
             string description, 
-            decimal initialBalance)
+            decimal initialBalance,
+            string userId)
         {
             return new Account
             {
                 Id = Guid.NewGuid(),
                 Title = title,
                 Description = description,
-                Balance = initialBalance
+                Balance = initialBalance,
+                UserId = userId
             };
         }
 
         public Guid Id { get; private set; }
-        public string Title { get; private set; } = null!;
-        public string Description { get; private set; } = null!;
+        public string Title { get; private set; }
+        public string Description { get; private set; }
         public decimal Balance { get; private set; }
+        public string UserId { get; private set; } 
     }
 }

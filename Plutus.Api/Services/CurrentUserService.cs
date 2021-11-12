@@ -1,4 +1,5 @@
-﻿using System.Security.Claims;
+﻿using System;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 using Plutus.Application.Common.Interfaces;
 
@@ -13,6 +14,7 @@ namespace Plutus.Api.Services
             _httpContextAccessor = httpContextAccessor;
         }
 
-        public string? UserId => _httpContextAccessor.HttpContext?.User.FindFirstValue("uid");
+        public string UserId => _httpContextAccessor.HttpContext?.User.FindFirstValue("uid") ??
+                                throw new ArgumentNullException(nameof(UserId));
     }
 }

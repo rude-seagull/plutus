@@ -6,12 +6,12 @@ namespace Plutus.Infrastructure.Persistence.Configurations
 {
     public class AccountConfiguration : IEntityTypeConfiguration<Account>
     {
-        public void Configure(EntityTypeBuilder<Account> builder)
+        public void Configure(EntityTypeBuilder<Account> accountEntity)
         {
-            builder.HasKey(a => a.Id);
-            builder.Property(a => a.Balance).HasColumnType("decimal(18,4)");
-            builder.Property(a => a.Title).HasMaxLength(maxLength: 140);
-            builder.Property(a => a.Description).HasMaxLength(maxLength: 500);
+            accountEntity.HasKey(a => a.Id);
+            accountEntity.Property(a => a.Balance).HasColumnType("decimal(18,4)");
+            accountEntity.Property(a => a.Title).HasMaxLength(maxLength: 140);
+            accountEntity.Property(a => a.Description).HasMaxLength(maxLength: 500);
         }
     }
 }
