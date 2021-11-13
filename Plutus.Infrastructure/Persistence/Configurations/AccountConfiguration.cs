@@ -12,6 +12,8 @@ namespace Plutus.Infrastructure.Persistence.Configurations
             accountEntity.Property(a => a.Balance).HasColumnType("decimal(18,4)");
             accountEntity.Property(a => a.Title).HasMaxLength(maxLength: 140);
             accountEntity.Property(a => a.Description).HasMaxLength(maxLength: 500);
+            accountEntity.Property(a => a.UserId).HasMaxLength(maxLength: 38);
+            accountEntity.HasMany(a => a.Transactions).WithOne().HasForeignKey(t => t.AccountId);
         }
     }
 }

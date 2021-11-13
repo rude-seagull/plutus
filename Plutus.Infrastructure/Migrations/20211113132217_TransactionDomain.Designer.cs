@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Plutus.Infrastructure.Persistence;
 
@@ -11,9 +12,10 @@ using Plutus.Infrastructure.Persistence;
 namespace Plutus.Infrastructure.Migrations
 {
     [DbContext(typeof(PlutusDbContext))]
-    partial class PlutusDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211113132217_TransactionDomain")]
+    partial class TransactionDomain
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
