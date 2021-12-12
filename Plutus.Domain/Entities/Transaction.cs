@@ -19,7 +19,6 @@ public class Transaction : AuditableEntity
     {
         return new Transaction
         {
-            Id = Guid.NewGuid(),
             Amount = amount,
             AccountId = accountId
         };

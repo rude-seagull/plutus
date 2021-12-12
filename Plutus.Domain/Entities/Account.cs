@@ -36,7 +36,6 @@ public class Account : AuditableEntity, IAggregateRoot
     {
         return new Account
         {
-            Id = Guid.NewGuid(),
             Title = title,
             Description = description,
             Balance = initialBalance,
