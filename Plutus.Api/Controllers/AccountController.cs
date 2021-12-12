@@ -1,10 +1,10 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Plutus.Application.Accounts;
-using Plutus.Application.Accounts.Commands.CreateAccount;
-using Plutus.Application.Accounts.Queries.GetAccount;
-using Plutus.Application.Accounts.Queries.GetAccounts;
+using Plutus.Application.Handlers.Accounts;
+using Plutus.Application.Handlers.Accounts.Commands.CreateAccount;
+using Plutus.Application.Handlers.Accounts.Queries.GetAccount;
+using Plutus.Application.Handlers.Accounts.Queries.GetAccounts;
 
 namespace Plutus.Api.Controllers;
 

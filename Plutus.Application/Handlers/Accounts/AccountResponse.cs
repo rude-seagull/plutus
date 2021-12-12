@@ -3,7 +3,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using Plutus.Domain.Entities;
 
-namespace Plutus.Application.Accounts;
+namespace Plutus.Application.Handlers.Accounts;
 
 public record AccountResponse(
     Guid Id,

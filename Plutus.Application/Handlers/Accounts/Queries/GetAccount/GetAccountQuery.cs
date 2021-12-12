@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Linq;
-using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Plutus.Application.Common.Interfaces;
-using Plutus.Domain.Entities;
 
-namespace Plutus.Application.Accounts.Queries.GetAccount;
+namespace Plutus.Application.Handlers.Accounts.Queries.GetAccount;
 
 public record GetAccountQuery(
     Guid AccountId) : IRequest<AccountResponse?>;

@@ -6,7 +6,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Plutus.Application.Common.Interfaces;
 
-namespace Plutus.Application.Accounts.Queries.GetAccounts;
+namespace Plutus.Application.Handlers.Accounts.Queries.GetAccounts;
 
 public record GetAccountsQuery : IRequest<List<AccountResponse>>;
 
