@@ -2,19 +2,18 @@
 using AutoMapper;
 using Plutus.Domain.Entities;
 
-namespace Plutus.Application.Accounts
-{
-    public record AccountResponse(
-        Guid Id,
-        string Title,
-        string Description,
-        decimal Balance);
+namespace Plutus.Application.Accounts;
 
-    public class AccountResponseProfile : Profile
+public record AccountResponse(
+    Guid Id,
+    string Title,
+    string Description,
+    decimal Balance);
+
+public class AccountResponseProfile : Profile
+{
+    public AccountResponseProfile()
     {
-        public AccountResponseProfile()
-        {
-            CreateMap<Account, AccountResponse>();
-        }
+        CreateMap<Account, AccountResponse>();
     }
 }

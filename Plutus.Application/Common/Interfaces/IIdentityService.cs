@@ -1,10 +1,11 @@
 ﻿using System.Threading.Tasks;
 using Plutus.Application.Users;
 
-namespace Plutus.Application.Common.Interfaces
+namespace Plutus.Application.Common.Interfaces;
+
+public interface IIdentityService
 {
-    public interface IIdentityService
-    {
-        Task<UserResponse> AuthenticateAsync(string email, string password);
-    }
+    Task<UserResponse> AuthenticateAsync(
+        string email,
+        string password);
 }

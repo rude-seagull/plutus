@@ -1,7 +1,6 @@
-﻿namespace Plutus.Application.Common.Interfaces
+﻿namespace Plutus.Application.Common.Interfaces;
+
+public interface ICurrentUserService
 {
-    public interface ICurrentUserService
-    {
-        string UserId { get; }
-    }
+    string UserId { get; }
 }

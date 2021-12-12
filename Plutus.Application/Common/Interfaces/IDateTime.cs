@@ -1,9 +1,8 @@
 ﻿using System;
 
-namespace Plutus.Application.Common.Interfaces
+namespace Plutus.Application.Common.Interfaces;
+
+public interface IDateTime
 {
-    public interface IDateTime
-    {
-        DateTime Now { get; }
-    }
+    DateTime Now { get; }
 }

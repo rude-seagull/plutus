@@ -1,9 +1,7 @@
 ﻿using System;
 
-namespace Plutus.Application.Exceptions
+namespace Plutus.Application.Exceptions;
+
+public class InvalidPasswordException : Exception
 {
-    public class InvalidPasswordException : Exception
-    {
-        
-    }
 }

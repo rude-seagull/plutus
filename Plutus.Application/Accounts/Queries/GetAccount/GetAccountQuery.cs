@@ -7,27 +7,31 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Plutus.Application.Common.Interfaces;
 
-namespace Plutus.Application.Accounts.Queries.GetAccount
+namespace Plutus.Application.Accounts.Queries.GetAccount;
+
+public record GetAccountQuery(
+    Guid AccountId) : IRequest<AccountResponse?>;
+
+public class GetAccountQueryHandler : IRequestHandler<GetAccountQuery, AccountResponse?>
 {
-    public record GetAccountQuery(Guid AccountId) : IRequest<AccountResponse?>;
+    private readonly IPlutusDbContext _context;
+    private readonly IMapper _mapper;
 
-    public class GetAccountQueryHandler : IRequestHandler<GetAccountQuery, AccountResponse?>
+    public GetAccountQueryHandler(
+        IPlutusDbContext context,
+        IMapper mapper)
     {
-        private readonly IPlutusDbContext _context;
-        private readonly IMapper _mapper;
+        _context = context;
+        _mapper = mapper;
+    }
 
-        public GetAccountQueryHandler(IPlutusDbContext context, IMapper mapper)
-        {
-            _context = context;
-            _mapper = mapper;
-        }
-        
-        public async Task<AccountResponse?> Handle(GetAccountQuery request, CancellationToken cancellationToken)
-        {
-            return await _context.Accounts
-                .AsNoTracking()
-                .ProjectTo<AccountResponse>(_mapper.ConfigurationProvider)
-                .FirstOrDefaultAsync(a => a.Id == request.AccountId, cancellationToken);
-        }
+    public async Task<AccountResponse?> Handle(
+        GetAccountQuery request,
+        CancellationToken cancellationToken)
+    {
+        return await _context.Accounts
+            .AsNoTracking()
+            .ProjectTo<AccountResponse>(_mapper.ConfigurationProvider)
+            .FirstOrDefaultAsync(a => a.Id == request.AccountId, cancellationToken);
     }
 }
