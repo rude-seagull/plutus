@@ -15,7 +15,6 @@ public class Account : AuditableEntity, IAggregateRoot
     // Navigation & Relationships
     private HashSet<Transaction> _transactions;
 
-    // Domain behavior
     private Account()
     {
     }
@@ -44,15 +43,17 @@ public class Account : AuditableEntity, IAggregateRoot
         };
     }
 
-    // Aggregate Behavior
     public void AddTransaction(
         decimal amount)
     {
         if (_transactions is null)
             throw new InvalidOperationException("The transactions collection must be loaded before calling this method");
 
-        _transactions.Add(Transaction.CreateInstance(amount, Id));
-        
-        // TODO Update balance, maybe introduce events here ? 
+        _transactions.Add(
+            Transaction.CreateInstance(
+                amount,
+                Id));
+
+        Balance += amount;
     }
 }

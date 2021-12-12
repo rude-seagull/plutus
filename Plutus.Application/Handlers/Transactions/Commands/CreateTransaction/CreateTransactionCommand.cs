@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Transactions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Plutus.Application.Common.Interfaces;
@@ -39,7 +38,7 @@ public class CreateTransactionCommandHandler : IRequestHandler<CreateTransaction
                 cancellationToken);
 
         if (account is null)
-            throw new NotFoundException();
+            throw new NotFoundException(nameof(account), request.AccountId);
 
         account.AddTransaction(amount);
         
