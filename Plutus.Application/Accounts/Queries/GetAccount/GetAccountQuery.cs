@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
-using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Plutus.Application.Common.Interfaces;
+using Plutus.Domain.Entities;
 
 namespace Plutus.Application.Accounts.Queries.GetAccount;
 
@@ -15,14 +16,11 @@ public record GetAccountQuery(
 public class GetAccountQueryHandler : IRequestHandler<GetAccountQuery, AccountResponse?>
 {
     private readonly IPlutusDbContext _context;
-    private readonly IMapper _mapper;
 
     public GetAccountQueryHandler(
-        IPlutusDbContext context,
-        IMapper mapper)
+        IPlutusDbContext context)
     {
         _context = context;
-        _mapper = mapper;
     }
 
     public async Task<AccountResponse?> Handle(
@@ -31,7 +29,7 @@ public class GetAccountQueryHandler : IRequestHandler<GetAccountQuery, AccountRe
     {
         return await _context.Accounts
             .AsNoTracking()
-            .ProjectTo<AccountResponse>(_mapper.ConfigurationProvider)
+            .ProjectToAccountResponse()
             .FirstOrDefaultAsync(a => a.Id == request.AccountId, cancellationToken);
     }
 }

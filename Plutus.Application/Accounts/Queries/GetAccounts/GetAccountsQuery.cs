@@ -2,8 +2,6 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Plutus.Application.Common.Interfaces;
@@ -16,15 +14,12 @@ public class GetAccountsQueryHandler : IRequestHandler<GetAccountsQuery, List<Ac
 {
     private readonly IPlutusDbContext _context;
     private readonly ICurrentUserService _currentUserService;
-    private readonly IMapper _mapper;
 
     public GetAccountsQueryHandler(
         IPlutusDbContext context,
-        IMapper mapper,
         ICurrentUserService currentUserService)
     {
         _context = context;
-        _mapper = mapper;
         _currentUserService = currentUserService;
     }
 
@@ -35,7 +30,7 @@ public class GetAccountsQueryHandler : IRequestHandler<GetAccountsQuery, List<Ac
         return await _context.Accounts
             .AsNoTracking()
             .Where(a => a.UserId == _currentUserService.UserId)
-            .ProjectTo<AccountResponse>(_mapper.ConfigurationProvider)
+            .ProjectToAccountResponse()
             .ToListAsync(cancellationToken);
     }
 }

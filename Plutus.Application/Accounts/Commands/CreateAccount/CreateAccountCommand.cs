@@ -1,6 +1,5 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using AutoMapper;
 using MediatR;
 using Plutus.Application.Common.Interfaces;
 using Plutus.Domain.Entities;
@@ -16,15 +15,12 @@ public class CreateAccountCommandHandler : IRequestHandler<CreateAccountCommand,
 {
     private readonly IPlutusDbContext _context;
     private readonly ICurrentUserService _currentUserService;
-    private readonly IMapper _mapper;
 
     public CreateAccountCommandHandler(
         IPlutusDbContext context,
-        IMapper mapper,
         ICurrentUserService currentUserService)
     {
         _context = context;
-        _mapper = mapper;
         _currentUserService = currentUserService;
     }
 
@@ -42,6 +38,7 @@ public class CreateAccountCommandHandler : IRequestHandler<CreateAccountCommand,
 
         _context.Accounts.Add(newAccount);
         await _context.SaveChangesAsync(cancellationToken);
-        return _mapper.Map<AccountResponse>(newAccount);
+
+        return newAccount.MapToAccountResponse();
     }
 }

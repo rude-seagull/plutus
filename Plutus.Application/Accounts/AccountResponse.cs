@@ -1,5 +1,6 @@
 ﻿using System;
-using AutoMapper;
+using System.Linq;
+using System.Linq.Expressions;
 using Plutus.Domain.Entities;
 
 namespace Plutus.Application.Accounts;
@@ -10,10 +11,22 @@ public record AccountResponse(
     string Description,
     decimal Balance);
 
-public class AccountResponseProfile : Profile
+internal static class AccountResponseMapper
 {
-    public AccountResponseProfile()
+    internal static IQueryable<AccountResponse> ProjectToAccountResponse(
+        this IQueryable<Account> accounts)
     {
-        CreateMap<Account, AccountResponse>();
+        return accounts.Select(MapToAccountResponse());
+    }
+
+    internal static AccountResponse MapToAccountResponse(
+        this Account account)
+    {
+        return MapToAccountResponse().Compile().Invoke(account);
+    }
+    
+    private static Expression<Func<Account, AccountResponse>> MapToAccountResponse()
+    {
+        return a => new AccountResponse(a.Id, a.Title, a.Description, a.Balance);
     }
 }
