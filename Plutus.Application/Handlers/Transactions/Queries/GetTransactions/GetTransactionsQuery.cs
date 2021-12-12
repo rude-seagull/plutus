@@ -29,6 +29,8 @@ public class GetTransactionsQueryHandler : IRequestHandler<GetTransactionsQuery,
         GetTransactionsQuery request,
         CancellationToken cancellationToken)
     {
+        // TODO: Expose transactions as a DbSet ? Or maybe load all transaction then map ? 
+        // Check query plan anyway
         return await _context.Accounts
             .AsNoTracking()
             .Where(a => a.UserId == _currentUserService.UserId && a.Id == request.AccountId)

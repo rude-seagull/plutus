@@ -53,5 +53,7 @@ public class Account : AuditableEntity, IAggregateRoot
             throw new InvalidOperationException("The transactions collection must be loaded before calling this method");
 
         _transactions.Add(Transaction.CreateInstance(amount, Id));
+        
+        // TODO Update balance, maybe introduce events here ? 
     }
 }
