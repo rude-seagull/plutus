@@ -26,6 +26,7 @@ public class AuthController : ControllerBase
     public async Task<ActionResult<UserResponse>> AuthenticateAsync([FromBody] AuthenticateQuery query)
     {
         var user = await _mediator.Send(query);
+        Response.Headers.Add("token", user.Token);
         return Ok(user);
     }
 }
