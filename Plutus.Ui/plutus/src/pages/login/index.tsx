@@ -34,29 +34,29 @@ const Login = () => {
                         onSubmit={handleSubmit}
                     >
                         <div>
-                            <label className="block text-sm font-medium text-gray-700">
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
                                 Username
                             </label>
                             <input
                                 name="username"
                                 type="text"
-                                className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full border-gray-300 px-2"
+                                className="appearance-none border-2 w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:border-plutus-green"
                             />
                         </div>
                         <div>
-                            <label className="block text-sm font-medium text-gray-700">
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
                                 Password
                             </label>
                             <input
                                 name="password"
                                 type="password"
-                                className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full border-gray-300 px-2"
+                                className="appearance-none border-2 w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none  focus:border-plutus-green"
                             />
                         </div>
 
                         <button
                             type="submit"
-                            className="bg-plutus-green hover:bg-green-600 py-2 text-white rounded-md shadow-md"
+                            className="mx-40 bg-plutus-green  hover:bg-plutus-green-dark py-2 text-white rounded-md shadow-md transition delay-150 hover:-translate-y-1 hover:scale-105 hover:shadow-xl"
                         >
                             Log in
                         </button>
@@ -65,7 +65,7 @@ const Login = () => {
                     <div className="text-center text-sm text-[#CACACA]">
                         <p>forgot password ? </p>
                         <p>
-                            don't have an account ?{' '}
+                            don't have an account ?
                             <a
                                 href=""
                                 className="underline decoration-plutus-green decoration-1 hover:text-plutus-green"

@@ -11,6 +11,7 @@ module.exports = {
                 'regal-blue': '#243c5a',
                 onyx: '#373A40',
                 'plutus-green': '#4ECCA3',
+                'plutus-green-dark': '#3ac6b4',
             },
             fontFamily: {
                 crimson: ['Crimson\\ Text'],
