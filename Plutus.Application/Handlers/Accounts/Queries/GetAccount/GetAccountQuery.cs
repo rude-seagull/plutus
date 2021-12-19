@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
@@ -7,8 +8,7 @@ using Plutus.Application.Common.Interfaces;
 
 namespace Plutus.Application.Handlers.Accounts.Queries.GetAccount;
 
-public record GetAccountQuery(
-    Guid AccountId) : IRequest<AccountResponse?>;
+public record GetAccountQuery(Guid AccountId) : IRequest<AccountResponse?>;
 
 public class GetAccountQueryHandler : IRequestHandler<GetAccountQuery, AccountResponse?>
 {
@@ -26,7 +26,8 @@ public class GetAccountQueryHandler : IRequestHandler<GetAccountQuery, AccountRe
     {
         return await _context.Accounts
             .AsNoTracking()
+            .Where(a => a.Id == request.AccountId)
             .ProjectToAccountResponse()
-            .FirstOrDefaultAsync(a => a.Id == request.AccountId, cancellationToken);
+            .SingleAsync(cancellationToken);
     }
 }

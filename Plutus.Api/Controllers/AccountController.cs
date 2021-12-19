@@ -33,7 +33,7 @@ public class AccountController : ControllerBase
     }
 
     [HttpGet("", Name = "GetAccounts")]
-    [ProducesResponseType(statusCode: StatusCodes.Status200OK, type: typeof(AccountResponse))]
+    [ProducesResponseType(statusCode: StatusCodes.Status200OK, type: typeof(List<AccountResponse>))]
     public async Task<ActionResult<AccountResponse>> GetAccountsAsync()
     {
         var accounts = await _mediator.Send(new GetAccountsQuery());
@@ -41,11 +41,11 @@ public class AccountController : ControllerBase
     }
 
     [HttpPost("", Name = "CreateAccount")]
-    [ProducesResponseType(statusCode: StatusCodes.Status200OK, type: typeof(List<AccountResponse>))]
+    [ProducesResponseType(statusCode: StatusCodes.Status200OK, type: typeof(AccountResponse))]
     public async Task<ActionResult<List<AccountResponse>>> CreateAccountAsync(
         [FromBody] CreateAccountCommand command)
     {
-        var accountId = await _mediator.Send(command);
-        return Ok(accountId);
+        var account = await _mediator.Send(command);
+        return Ok(account);
     }
 }

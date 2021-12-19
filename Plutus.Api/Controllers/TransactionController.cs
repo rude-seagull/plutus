@@ -23,7 +23,7 @@ public class TransactionController : ControllerBase
     }
 
     [HttpGet("", Name = "GetTransactions")]
-    [ProducesResponseType(statusCode: StatusCodes.Status200OK, type: typeof(IEnumerable<TransactionResponse>))]
+    [ProducesResponseType(statusCode: StatusCodes.Status200OK, type: typeof(List<TransactionResponse>))]
     public async Task<ActionResult<IEnumerable<TransactionResponse>>> GetTransactionsAsync(
         [FromRoute] Guid accountId)
     {
@@ -36,7 +36,7 @@ public class TransactionController : ControllerBase
     public async Task<ActionResult<TransactionResponse>> CreateTransactionAsync(
         [FromRoute] Guid accountId, [FromQuery] decimal amount)
     {
-        var transactions = await _mediator.Send(new CreateTransactionCommand(accountId, amount));
-        return Ok(transactions);
+        var transaction = await _mediator.Send(new CreateTransactionCommand(accountId, amount));
+        return Ok(transaction);
     }
 }

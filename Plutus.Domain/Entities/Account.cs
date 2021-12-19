@@ -43,17 +43,17 @@ public class Account : AuditableEntity, IAggregateRoot
         };
     }
 
-    public void AddTransaction(
+    public Transaction AddTransaction(
         decimal amount)
     {
         if (_transactions is null)
             throw new InvalidOperationException("The transactions collection must be loaded before calling this method");
 
-        _transactions.Add(
-            Transaction.CreateInstance(
-                amount,
-                Id));
+        var newTransaction = Transaction.CreateInstance(amount, Id);
+        _transactions.Add(newTransaction);
 
         Balance += amount;
+
+        return newTransaction;
     }
 }

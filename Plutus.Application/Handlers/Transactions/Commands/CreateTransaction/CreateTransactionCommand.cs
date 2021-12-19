@@ -10,7 +10,8 @@ namespace Plutus.Application.Handlers.Transactions.Commands.CreateTransaction;
 
 public record CreateTransactionCommand(
     Guid AccountId,
-    decimal Amount) : IRequest<TransactionResponse>;
+    decimal Amount) 
+    : IRequest<TransactionResponse>;
 
 public class CreateTransactionCommandHandler : IRequestHandler<CreateTransactionCommand, TransactionResponse>
 {
@@ -34,16 +35,15 @@ public class CreateTransactionCommandHandler : IRequestHandler<CreateTransaction
         var account = await _context.Accounts
             .Include(a => a.Transactions)
             .FirstOrDefaultAsync(
-                a => a.Id == accountId && a.UserId == _currentUserService.UserId, 
+                a => a.Id == accountId && a.UserId == _currentUserService.UserId,
                 cancellationToken);
 
         if (account is null)
             throw new NotFoundException(nameof(account), request.AccountId);
 
-        account.AddTransaction(amount);
-        
+        var newTransaction = account.AddTransaction(amount);
         await _context.SaveChangesAsync(cancellationToken);
 
-        return new TransactionResponse();
+        return newTransaction.MapToTransactionResponse();
     }
 }
