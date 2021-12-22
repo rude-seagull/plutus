@@ -32,14 +32,6 @@ public class AccountController : ControllerBase
         return account is null ? NotFound() : Ok(account);
     }
 
-    [HttpGet("", Name = "GetAccounts")]
-    [ProducesResponseType(statusCode: StatusCodes.Status200OK, type: typeof(List<AccountResponse>))]
-    public async Task<ActionResult<AccountResponse>> GetAccountsAsync()
-    {
-        var accounts = await _mediator.Send(new GetAccountsQuery());
-        return Ok(accounts);
-    }
-
     [HttpPost("", Name = "CreateAccount")]
     [ProducesResponseType(statusCode: StatusCodes.Status200OK, type: typeof(AccountResponse))]
     public async Task<ActionResult<List<AccountResponse>>> CreateAccountAsync(
@@ -47,5 +39,13 @@ public class AccountController : ControllerBase
     {
         var account = await _mediator.Send(command);
         return Ok(account);
+    }
+    
+    [HttpGet("", Name = "GetAccounts")]
+    [ProducesResponseType(statusCode: StatusCodes.Status200OK, type: typeof(List<AccountResponse>))]
+    public async Task<ActionResult<AccountResponse>> GetAccountsAsync()
+    {
+        var accounts = await _mediator.Send(new GetAccountsQuery());
+        return Ok(accounts);
     }
 }

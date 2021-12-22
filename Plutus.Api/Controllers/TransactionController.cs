@@ -34,7 +34,8 @@ public class TransactionController : ControllerBase
     [HttpPost("", Name = "CreateTransaction")]
     [ProducesResponseType(statusCode: StatusCodes.Status200OK, type: typeof(TransactionResponse))]
     public async Task<ActionResult<TransactionResponse>> CreateTransactionAsync(
-        [FromRoute] Guid accountId, [FromQuery] decimal amount)
+        [FromRoute] Guid accountId, 
+        [FromQuery] decimal amount)
     {
         var transaction = await _mediator.Send(new CreateTransactionCommand(accountId, amount));
         return Ok(transaction);

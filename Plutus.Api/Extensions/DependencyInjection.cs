@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.HttpLogging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Plutus.Api.Services;
@@ -85,6 +86,17 @@ public static class DependencyInjection
                     new List<string>()
                 }
             });
+        });
+
+        return services;
+    }
+    
+    public static IServiceCollection ConfigureLogging(
+        this IServiceCollection services)
+    {
+        services.AddHttpLogging(logging =>
+        {
+            logging.LoggingFields = HttpLoggingFields.All;
         });
 
         return services;
