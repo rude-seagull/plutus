@@ -5,5 +5,7 @@
  * OpenAPI spec version: v1
  */
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface TransactionResponse {}
+export interface TransactionResponse {
+  id?: string;
+  amount?: number;
+}

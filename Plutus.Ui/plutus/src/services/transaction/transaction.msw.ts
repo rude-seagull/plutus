@@ -9,9 +9,9 @@ import {
 } from 'msw'
 import faker from 'faker'
 
-export const getGetTransactionsMock = () => ([...Array(faker.datatype.number({min: 1, max: 10}))].map(() => ({})))
+export const getGetTransactionsMock = () => ([...Array(faker.datatype.number({min: 1, max: 10}))].map(() => ({id: faker.random.word(), amount: faker.datatype.number()})))
 
-export const getCreateTransactionMock = () => ({})
+export const getCreateTransactionMock = () => ({id: faker.random.word(), amount: faker.datatype.number()})
 
 export const getTransactionMSW = () => [
 rest.get('*/api/accounts/:accountId/transactions', (req, res, ctx) => {

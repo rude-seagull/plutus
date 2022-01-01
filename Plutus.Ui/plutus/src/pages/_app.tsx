@@ -4,6 +4,7 @@ import Head from 'next/head';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import React from 'react';
 import { ReactQueryDevtools } from 'react-query/devtools';
+import { RecoilRoot } from 'recoil';
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
     const queryClientRef = React.useRef();
@@ -24,15 +25,17 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
     return (
         <SessionProvider session={session}>
             <QueryClientProvider client={queryClientRef.current}>
-                <Head>
-                    <link
-                        rel="stylesheet"
-                        type="text/css"
-                        href="//fonts.googleapis.com/css?family=Crimson+Text"
-                    />
-                </Head>
-                <Component {...pageProps} />;
-                <ReactQueryDevtools initialIsOpen={false} />
+                <RecoilRoot>
+                    <Head>
+                        <link
+                            rel="stylesheet"
+                            type="text/css"
+                            href="//fonts.googleapis.com/css?family=Crimson+Text"
+                        />
+                    </Head>
+                    <Component {...pageProps} />
+                    <ReactQueryDevtools initialIsOpen={false} />
+                </RecoilRoot>
             </QueryClientProvider>
         </SessionProvider>
     );

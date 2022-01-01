@@ -63,6 +63,7 @@ export default NextAuth({
     pages: {
         signIn: '/login',
         error: '/login',
+        signOut: '/login',
     },
     session: {
         strategy: 'jwt',

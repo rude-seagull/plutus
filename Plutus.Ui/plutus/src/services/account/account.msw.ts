@@ -13,7 +13,7 @@ export const getGetAccountMock = () => ({id: faker.random.word(), title: faker.h
 
 export const getGetAccountsMock = () => ([...Array(faker.datatype.number({min: 1, max: 10}))].map(() => ({id: faker.random.word(), title: faker.helpers.randomize([faker.random.word(), null]), description: faker.helpers.randomize([faker.random.word(), null]), balance: faker.datatype.number()})))
 
-export const getCreateAccountMock = () => ([...Array(faker.datatype.number({min: 1, max: 10}))].map(() => ({id: faker.random.word(), title: faker.helpers.randomize([faker.random.word(), null]), description: faker.helpers.randomize([faker.random.word(), null]), balance: faker.datatype.number()})))
+export const getCreateAccountMock = () => ({id: faker.random.word(), title: faker.helpers.randomize([faker.random.word(), null]), description: faker.helpers.randomize([faker.random.word(), null]), balance: faker.datatype.number()})
 
 export const getAccountMSW = () => [
 rest.get('*/api/accounts/:accountId', (req, res, ctx) => {

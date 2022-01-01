@@ -96,7 +96,7 @@ export const useGetAccounts = <TData = AsyncReturnType<typeof getAccounts>, TErr
 export const createAccount = (
     createAccountCommand: CreateAccountCommand,
  ) => {
-      return customInstance<AccountResponse[]>(
+      return customInstance<AccountResponse>(
       {url: `/api/accounts`, method: 'post',
       data: createAccountCommand
     },
